@@ -12,7 +12,9 @@ function HeaderTop() {
     const [inpVal, setInpVal] = useState('')
     const [search, setSearch] = useState([])
     useEffect(() => {
-        getProductsBySearch(inpVal).then(res => setSearch(res.products.slice(0, 5)))
+        if (inpVal.trim().length > 1) {
+            getProductsBySearch(inpVal).then(res => setSearch(res.products.slice(0, 5)))
+        }
     }, [inpVal])
 
     const navigate = useNavigate();

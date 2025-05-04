@@ -1,8 +1,13 @@
 import React, { useContext } from 'react'
 import { WISHLIST } from '../../context/WishContext'
+import { useNavigate } from 'react-router-dom';
 
 function Wishlist() {
-    const { wish, clearWishList, delWishList } = useContext(WISHLIST)
+    const { wish, clearWishList, delWishList } = useContext(WISHLIST);
+    const navigate = useNavigate()
+    function routeDo(id) {
+        navigate('/filterle/'+id)
+    }
 
     return (
         <div className="container mx-auto p-4 flex flex-col md:flex-row gap-6 text-[12px] my-4">
@@ -28,7 +33,9 @@ function Wishlist() {
                         </thead>
                         <tbody>
                             {wish.map((product) => (
-                                <tr key={product.id} className="border-t hover:bg-gray-50">
+                                <tr onClick={()=>{
+                                    routeDo(product.id)
+                                }} key={product.id} className="border-t hover:bg-gray-50">
                                     <td className="py-2 px-2">
                                         <img
                                             src={product.img?.[0] || '/placeholder.png'}
@@ -39,13 +46,15 @@ function Wishlist() {
                                     <td className="py-2 px-2 font-medium">{product.name}</td>
                                     <td className="py-2 px-2">{"product.stock"}</td>
                                     <td className="py-2 px-2 text-orange-500 font-semibold">{product.price}</td>
-                                    <td className="py-2 px-2 flex gap-2">
+                                    <td onClick={(e)=>{
+                                        e.stopPropagation()
+                                    }} className="py-2 px-2 flex gap-2">
                                         <button className="bg-orange-400 hover:bg-orange-500 text-white px-2 py-1 rounded-full text-sm">
                                             🛒
                                         </button>
                                         <button
                                             onClick={() => delWishList(product.id)}
-                                            className="bg-red-400 hover:bg-white hover:text-red-400 px-2 py-1 rounded-full text-sm"
+                                            className="hover:bg-red-400 bg-white hover:text-red-400 px-2 py-1 rounded-full text-sm"
                                         >
                                             ❌
                                         </button>

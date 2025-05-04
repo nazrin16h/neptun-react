@@ -12,23 +12,28 @@ function Main() {
     const [popProd, setPopProd] = useState()
     const [sirniyyat, setSirniyyat] = useState()
     const [product, setProduct] = useState()
+    const [activeIndex, setactiveIndex] = useState(7)
 
     useEffect(() => {
         getProdByDiscounted().then(meh => setDicsProd(meh))
         getProdByPopular().then(meh => setPopProd(meh))
-        getProdByCategory(7).then(meh => setSirniyyat(meh))
         getAllProducts().then(meh => setProduct(meh))
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        getProdByCategory(activeIndex).then(meh => setSirniyyat(meh))
+
+    }, [activeIndex])
 
     return (
         <div className='bg-[#F2F2F2]'>
             <div className='max-w-[1250px] my-0 mx-auto'>
-                                <div className='bg-[#F2F2F2]'>
-                <MainTop />
-            </div>
+                <div className='bg-[#F2F2F2]'>
+                    <MainTop />
+                </div>
                 <div className='flex flex-col lg:flex-row justify-between items-start gap-[10px] py-[50px] px-4 sm:px-0'>
                     <div className='w-full lg:w-[32%]'>
-                        <MainCategorySlider />
+                        <MainCategorySlider setactiveIndex={setactiveIndex} />
                     </div>
                     <div className='w-full lg:w-[68%]'>
                         <Slider data={sirniyyat} slidesPerView={4} />
