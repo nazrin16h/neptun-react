@@ -1,8 +1,9 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 export const BASKET = createContext()
 
 function BasketContext({ children }) {
+
     const initial = JSON.parse(localStorage.getItem('basket')) || [];
     const [basketArr, setBasketArr] = useState(initial)
 
@@ -16,13 +17,18 @@ function BasketContext({ children }) {
             setBasketArr([...basketArr, item])
 
         }
-        console.log(basketArr);
         localStorage.setItem('basket', JSON.stringify(basketArr))
+    }
+
+    function clearWishList() {
+        localStorage.removeItem("wishlist")
+        setBasketArr([])
+
     }
 
     return (
         <>
-            <BASKET.Provider value={{ addToBasket, basketArr,setBasketArr }}>
+            <BASKET.Provider value={{ addToBasket, basketArr, setBasketArr, clearWishList }}>
                 {children}
             </BASKET.Provider>
         </>

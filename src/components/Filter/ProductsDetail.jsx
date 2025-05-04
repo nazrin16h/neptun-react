@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getProductsById } from '../../services/api'
 import { useParams } from 'react-router-dom'
 import ProductDetailSkeleton from './ProductDetailSkeleton'
 import { Rate } from 'antd';
+import { WISHLIST } from '../../context/WishContext';
+import { BASKET } from '../../context/BasketContext';
 
 
 function ProductsDetail() {
     const [data, setData] = useState()
     const { id } = useParams()
+    const { addWishList } = useContext(WISHLIST)
+    const { addToBasket } = useContext(BASKET)
+    const [count, setCount] = useState(1)
 
     useEffect(() => {
         getProductsById(id).then(res => setData(res))
@@ -15,6 +20,15 @@ function ProductsDetail() {
     }, [id])
 
     if (!data) return <> <ProductDetailSkeleton /> </>
+    const { name, img, price, categoryName } = data;
+
+
+    function incDec(x) {
+        if (count + x) {
+
+            setCount(count + x)
+        }
+    }
 
     return (
         <>
@@ -45,15 +59,37 @@ function ProductsDetail() {
                             <div className="text-3xl text-orange-500 font-bold mb-4">{data.price}</div>
 
                             <div className="flex items-center mb-4">
-                                <button className="w-8 h-8 bg-gray-200 rounded-full text-xl">-</button>
-                                <span className="px-4">1</span>
-                                <button className="w-8 h-8 bg-gray-200 rounded-full text-xl">+</button>
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        incDec(-1)
+
+                                    }}
+                                    className="w-8 h-8 bg-gray-200 rounded-full text-xl">-</button>
+                                <span className="px-4">{count}</span>
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        incDec(1)
+
+                                    }}
+                                    className="w-8 h-8 bg-gray-200 rounded-full text-xl">+</button>
                                 <span className="ml-2">Ədəd</span>
                             </div>
 
                             <div className="flex items-center space-x-4">
-                                <button className="bg-orange-500 text-white px-6 py-2 rounded-full">Səbətə At</button>
-                                <button className="text-orange-500 text-2xl">♡</button>
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        addToBasket({ id, img, name, price, categoryName, count })
+                                    }}
+                                    className="bg-orange-500 text-white px-6 py-2 rounded-full">Səbətə At</button>
+                                <button
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        { addWishList({ id, img, name, price, categoryName }) }
+                                    }}
+                                    className="text-orange-500 text-2xl">♡</button>
                                 <button className="text-orange-500 text-2xl">↻</button>
                             </div>
                         </div>
