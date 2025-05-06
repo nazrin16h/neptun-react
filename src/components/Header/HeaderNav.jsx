@@ -9,7 +9,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import NavCategoriesForMobile from "./NavCategoriesForMobile";
 import NavCategories from "./NavCategories";
 import { HiMenuAlt2 } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ShoppingList from "./ShoppingList";
 
 
@@ -18,6 +18,10 @@ function HeaderNav() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [hovered, setHovered] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const navigate = useNavigate();
+    const handleLoginClick = () => {
+        navigate('/login');
+    };
 
 
     const toggleSidebar = () => {
@@ -97,7 +101,9 @@ function HeaderNav() {
                             </div>
                             <div className="text-[12px] font-bold flex items-center border-r border-white pr-[12px]">
                                 <FontAwesomeIcon className="text-white" icon={faLock} />
-                                <span className="text-white ml-[5px]">Giriş</span>
+                                <span
+                                    onClick={handleLoginClick}
+                                    className="text-white ml-[5px] cursor-pointer">Giriş</span>
                             </div>
 
                             <div className="relative group mx-3">
