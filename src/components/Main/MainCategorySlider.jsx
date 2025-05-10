@@ -24,7 +24,7 @@ function MainCategorySlider({ setactiveIndex }) {
                     <div>
                         <div className='w-[375px] h-[375px] rounded-[9px] overflow-hidden relative kategoriyalar'>
                             <span className='absolute bg-[#29292991] p-[19px] text-[#fff] text-[18px]  rounded-br-4xl'>                                        <p>Kateqoriyalar:</p>
-                                Quru meyvələr
+
                                 <p>Meyvə</p>
                             </span>
                             <a href="#">
@@ -37,7 +37,7 @@ function MainCategorySlider({ setactiveIndex }) {
                     <div>
                         <div className='w-[375px] h-[375px] rounded-[9px] overflow-hidden relative kategoriyalar'>
                             <span className='absolute bg-[#29292991] p-[19px] text-[#fff] text-[18px] rounded-br-4xl'>                                <p>Kateqoriyalar:</p>
-                                Quru meyvələr
+
                                 <p>Səhər yeməkləri</p>
                             </span>
                             <a href="#">
@@ -50,7 +50,7 @@ function MainCategorySlider({ setactiveIndex }) {
                     <div>
                         <div className='w-[375px] h-[375px] rounded-[9px] overflow-hidden relative kategoriyalar'>
                             <span className='absolute bg-[#29292991] p-[19px] text-[#fff] text-[18px]  rounded-br-4xl'>                                <p>Kateqoriyalar:</p>
-                                Quru meyvələr
+
                                 <p>NesCake</p>
 
 
@@ -65,7 +65,7 @@ function MainCategorySlider({ setactiveIndex }) {
                     <div>
                         <div className='w-[375px] h-[375px] rounded-[9px] overflow-hidden relative kategoriyalar'>
                             <span className='absolute bg-[#29292991] p-[19px] text-[#fff] text-[18px]  rounded-br-4xl'>                                <p>Kateqoriyalar:</p>
-                                Quru meyvələr
+
                                 <p>Yalnız Neptunda</p>
                             </span>
                             <a href="#">
@@ -78,7 +78,7 @@ function MainCategorySlider({ setactiveIndex }) {
                     <div>
                         <div className='w-[375px] h-[375px] rounded-[9px] overflow-hidden relative kategoriyalar'>
                             <span className='absolute bg-[#29292991] p-[19px] text-[#fff] text-[18px]  rounded-br-4xl'>                                <p>Kateqoriyalar:</p>
-                                Quru meyvələr
+
                                 <p>Quru meyvələr</p>
                             </span>
                             <a href="#">
