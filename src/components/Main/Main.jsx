@@ -31,11 +31,11 @@ function Main() {
                 <div className='bg-[#F2F2F2]'>
                     <MainTop />
                 </div>
-                <div className='flex flex-col lg:flex-row justify-between items-start gap-[10px] py-[50px] px-4 sm:px-0'>
+                <div className='flex flex-col lg:flex-row justify-between items-start gap-[10px] py-[50px] px-4  sm:px-0'>
                     <div className='w-full lg:w-[32%]'>
                         <MainCategorySlider setactiveIndex={setactiveIndex} />
                     </div>
-                    <div className='w-full lg:w-[68%]'>
+                    <div className='w-full lg:w-[58%] '>
                         <Slider data={sirniyyat} slidesPerView={4} />
                     </div>
                 </div>

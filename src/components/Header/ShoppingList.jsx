@@ -1,13 +1,11 @@
 import React, { children, useContext, useState } from 'react';
-import { FaTrash } from 'react-icons/fa';
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaTrash, FaShoppingCart } from 'react-icons/fa';
 import { BASKET } from '../../context/BasketContext';
 
 function ShoppingList() {
 
     const [isOpen, setIsOpen] = useState(false);
-    const { basketArr, setBasketArr,clearWishList } = useContext(BASKET);
+    const { basketArr, setBasketArr, clearWishList } = useContext(BASKET);
 
 
     function clearBasketList(id) {
@@ -20,10 +18,9 @@ function ShoppingList() {
         <BASKET.Provider value={{ clearBasketList, basketArr }}>
             {children}
             <div className="relative">
-                <FontAwesomeIcon
+                <FaShoppingCart
                     onClick={() => setIsOpen(!isOpen)}
                     className="text-white cursor-pointer"
-                    icon={faCartShopping}
                 />
 
                 {isOpen && (
@@ -58,9 +55,9 @@ function ShoppingList() {
                                 </div>
 
                                 <div className="flex justify-between mt-4">
-                                    <button 
-                                    onClick={clearWishList}
-                                    className="bg-gray-600 text-white px-4 py-2 rounded-3xl hover:bg-orange-400 transition-all duration-300">
+                                    <button
+                                        onClick={clearWishList}
+                                        className="bg-gray-600 text-white px-4 py-2 rounded-3xl hover:bg-orange-400 transition-all duration-300">
                                         Səbəti sifirla
                                     </button>
                                     <button className="bg-orange-500 text-white px-4 py-2 rounded-3xl hover:bg-orange-600 transition-all duration-300">

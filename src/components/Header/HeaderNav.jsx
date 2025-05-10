@@ -1,16 +1,13 @@
 import React, { useState } from "react";
 import { ChevronDown, Menu } from "lucide-react";
-import { faLock } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
-import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { IoMdHeartEmpty, IoMdHeart, IoIosArrowDown } from "react-icons/io";
 import NavCategoriesForMobile from "./NavCategoriesForMobile";
 import NavCategories from "./NavCategories";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
 import ShoppingList from "./ShoppingList";
+import { FaBars, FaLock, FaHeart, FaRegHeart, FaArrowRotateRight } from "react-icons/fa6";
+import { FaArrowsRotate } from "react-icons/fa6";
 
 
 
@@ -18,6 +15,7 @@ function HeaderNav() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [hovered, setHovered] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [sidebarOpen2, setSidebarOpen2] = useState(false);
     const navigate = useNavigate();
     const handleLoginClick = () => {
         navigate('/login');
@@ -30,13 +28,13 @@ function HeaderNav() {
 
     return (
         <div>
-            <header className="bg-[#FF8300] py-[20px] sm:py-[0px] mt-[10px] sticky top-0 z-50 px-[10px] shadow-[0_6px_12px_rgba(0,0,0,0.2)]">
+            <header className="bg-[#FF8300] py-[10px]  mt-[10px] sticky top-0 z-50 px-[10px] shadow-[0_6px_12px_rgba(0,0,0,0.2)]">
                 <div className="mx-auto py-3 flex container justify-between items-center">
                     <div className="flex justify-between gap-[50px] px-[17px] container mx-auto pt-[40px] ">
                         <div className="absolute">
                             <NavCategories />
                         </div>
-                        <nav className="hidden md:flex space-x-6 items-center justify-end py-[12px] ">
+                        <nav className="hidden xl:flex space-x-6 items-center justify-end">
                             <div className="w-[250px]"></div>
                             <a href="#" className="transition text-[12px] text-white font-bold whitespace-nowrap">Ana Səhifə</a>
                             <div className="relative group">
@@ -88,8 +86,8 @@ function HeaderNav() {
                             </div>
                             <a href="#" className="transition text-[12px] text-white font-bold">Əlaqə</a>
                         </nav>
-                        <div className="flex items-center justify-end w-[100%] px-[10px]">
-                            <div className="flex sm:hidden">
+                        <div className="flex items-center justify-between w-full mx-0">
+                            <div className="flex xl:hidden">
                                 <span className="text-[20px] text-white" onClick={() => setSidebarOpen(true)}>
                                     <HiMenuAlt2 />
                                 </span>
@@ -97,10 +95,10 @@ function HeaderNav() {
                             <NavCategoriesForMobile sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
                             <div className="sm:inline-block lg:hidden">
-                                <FontAwesomeIcon className="text-[#ff8300]" icon={faBars} />
+                                <FaBars className="text-[#ff8300]" />
                             </div>
                             <div className="text-[12px] font-bold flex items-center border-r border-white pr-[12px]">
-                                <FontAwesomeIcon className="text-white" icon={faLock} />
+                                <FaLock className="text-white" />
                                 <span
                                     onClick={handleLoginClick}
                                     className="text-white ml-[5px] cursor-pointer">Giriş</span>
@@ -108,7 +106,8 @@ function HeaderNav() {
 
                             <div className="relative group mx-3">
                                 <button className="flex items-center text-[12px] text-white font-bold transition">
-                                    Hesabım
+                                    <span className="hidden sm:flex">Hesabım</span>
+                                    <span className="flex sm:hidden"></span>
                                     <ChevronDown className="ml-1 h-4 w-4" />
                                 </button>
                                 <div className="absolute text-[12px] rounded-b-xl top-[22px] mt-2 w-48 bg-white shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
@@ -119,13 +118,12 @@ function HeaderNav() {
                                 </div>
                             </div>
 
-                            <Link to={'/wishlist'} className="text-[19px] px-[12px]"
-                                onMouseEnter={() => setHovered(true)}
-                                onMouseLeave={() => setHovered(false)}>
-                                <FontAwesomeIcon className="text-white" icon={hovered ? solidHeart : regularHeart} />
+                            <Link to={'/wishlist'} className="text-[19px] px-[12px] group cursor-pointer">
+                                <IoMdHeartEmpty className="text-white text-[23px] group-hover:hidden" />
+                                <IoMdHeart className="hidden text-white text-[23px] group-hover:block" />
                             </Link>
                             <span className="text-[19px] px-[12px] transition-transform duration-300 hover:rotate-180">
-                                <FontAwesomeIcon className="text-white" icon={faArrowsRotate} />
+                                <FaArrowsRotate className="text-white text-[18px] transition-transform duration-300 group-hover:rotate-180" />
                             </span>
                             <span className="text-[19px] px-[12px]">
                                 <ShoppingList />

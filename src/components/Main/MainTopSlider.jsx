@@ -4,8 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules';
-import '../../style/headerSwiper.css'
-
+import '../../style/swiper.css'
 function MainTopSlider() {
     const [data, setData] = useState([
         "https://neptun.az/image/cache/webp/catalog/01.01.01/insert-banner-2-1130x413.webp?v=9",
@@ -17,6 +16,7 @@ function MainTopSlider() {
         <>
             <Swiper
                 loop={true}
+                spaceBetween={25}
                 autoplay={{
                     delay: 2500,
                     disableOnInteraction: false,

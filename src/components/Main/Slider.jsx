@@ -2,25 +2,21 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
-import '../../style/mainSwiper.css';
+import '../../style/swiper.css';
 import { Link } from 'react-router-dom';
-import { useContext, useState } from 'react';
-import { BASKET } from '../../context/BasketContext';
 import SliderCard from './SliderCard';
 
 export default function Slider({ data, slidesPerView, discount }) {
-
-
     return (
         <Swiper
             loop={true}
-            spaceBetween={30}
+            spaceBetween={24}
             navigation={true}
             modules={[Navigation]}
-            className="mySwiper"
+            className="mainSlider"
             breakpoints={{
                 320: {
-                    slidesPerView: 1,
+                    slidesPerView: 2,
                 },
                 480: {
                     slidesPerView: 2,
@@ -36,10 +32,12 @@ export default function Slider({ data, slidesPerView, discount }) {
 
             {data != null &&
                 data.products.map((item, i) =>
-                    <SwiperSlide key={i}>
-                        <Link to={`/filterle/${item.id}`} className="group w-[191px] px-[10px] h-[375px] pb-[17px] rounded-[7px] flex flex-col items-center text-center bg-white relative">
-                            
-                        <SliderCard item={item} discount={discount} />
+                    <SwiperSlide key={i} className="!flex justify-center">
+                        <Link
+                            to={`/filterle/${item.id}`}
+                            className="group w-full max-w-[220px] h-[375px] px-[10px] pb-[17px] gap-10 rounded-[7px] flex flex-col items-center text-center bg-white relative"
+                        >
+                            <SliderCard item={item} discount={discount} />
                         </Link>
                     </SwiperSlide>
                 )

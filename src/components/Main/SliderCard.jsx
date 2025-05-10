@@ -16,13 +16,12 @@ function SliderCard({ item, discount }) {
 
 
     return (
-        <div className='group w-[191px] px-[10px] h-[375px] pb-[17px] rounded-[7px] flex flex-col items-center text-center bg-white relative'>
-            <div className='absolute top-[10px] right-[10px] text-[#FF8203] text-[20px]'><i className="fa-regular fa-heart"></i></div>
-            <div className='w-[168px] h-[172px] '>
+        <div className="xl:w-[191px] w-[170px] px-[10px] h-[375px] pb-[17px] rounded-[7px] flex flex-col items-center text-center  relative">            <div className='absolute top-[10px] right-[10px] text-[#FF8203] text-[20px]'><i className="fa-regular fa-heart"></i></div>
+            <div className='max-w-[120px] h-[155px]  '>
                 <img src={img[0]} alt="" className="object-cover object-center w-full" />
             </div>
             <div>
-                <h4 className='text-[10px] font-noto uppercase text-[#222] font-semibold w-[103px]' >{name}</h4>
+                <h4 className='text-[10px] font-noto uppercase text-[#222] w-[100px] h-[50px] font-semibold w-[103px]' >{name}</h4>
             </div>
             {
                 discount ?

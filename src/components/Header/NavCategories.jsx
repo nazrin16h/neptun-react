@@ -43,7 +43,8 @@ function NavCategories({ sidebarOpen }) {
                 // Əsas səhifədə: ikonlar həmişə görünür
                 <div className={`
                     w-[250px] bg-white shadow-md z-990 transition-all duration-300
-                    ${sidebarOpen ? 'relative top-[0px] left-0 lg:hidden' : 'relative hidden lg:block top-[-5px] left-[-10px]'}
+                    ${sidebarOpen ? 'relative top-[0px] left-0 lg:hidden' : 'relative hidden lg:block top-[-17px] left-[-10px]'}
+
                 `}>
                     <div className='px-4 border-t-4 border-[#ff8300] font-bold text-[#ff8300] text-[14px] py-[10px] flex gap-[10px] items-center rounded-[5px] overflow-hidden'>
                         <span className='text-[21px]'><IoIosMenu /></span>
@@ -52,11 +53,11 @@ function NavCategories({ sidebarOpen }) {
 
                     {data.map((item, i) => (
                         <div className="group relative" key={i}>
-                            <div className="flex items-center gap-2 text-bold px-4 py-2 hover:bg-orange-100 cursor-pointer transition">
+                            <div className="flex items-center gap-2 text-bold px-4 py-2 hover:bg-orange-100 cursor-pointer transition border-b-1 border-gray-200 last:border-b-0 mx-auto p-[10px]">
                                 <span className="text-orange-500 text-xl">
                                     <img src={icons[i]} alt="" />
                                 </span>
-                                <span className="font-bold text-[11px] w-[100%] flex justify-between">
+                                <span className="font-bold text-[11px] w-[100%] flex justify-between ">
                                     <span>{item.categoryName}</span>
                                     {item.subcategory.length > 0 && <span>›</span>}
                                 </span>
@@ -79,11 +80,10 @@ function NavCategories({ sidebarOpen }) {
                     ))}
                 </div>
             ) : (
-                <div className="relative group z-[999] top-[-7px] left-[-10px] hidden lg:inline-block">
-                    <div className='px-4 border-t-4 border-b-4 group-hover:border-b-0 w-[250px] border-[#ff8300] bg-white font-bold text-[#ff8300] text-[14px] py-[12px] flex gap-[10px] items-center rounded-t-[5px] rounded-b-[5px] group-hover:rounded-b-[0px] overflow-hidden cursor-pointer'>
-                        <span className='text-[21px]'><IoIosMenu /></span>
-                        <span>Kateqoriyalar</span>
-                    </div>
+                <div className="relative group z-[999] top-[-17px] left-[-10px] hidden lg:inline-block">                    <div className='px-4 border-t-4 border-b-4 group-hover:border-b-0 w-[250px] border-[#ff8300] bg-white font-bold text-[#ff8300] text-[14px] py-[12px] flex gap-[10px] items-center rounded-t-[5px] rounded-b-[5px] group-hover:rounded-b-[0px] overflow-hidden cursor-pointer'>
+                    <span className='text-[21px]'><IoIosMenu /></span>
+                    <span>Kateqoriyalar</span>
+                </div>
                     <div className="absolute top-full left-0 w-[250px] bg-white shadow-md z-990 transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible">
                         {data.map((item, i) => (
                             <div className="relative group/item" key={i}>
