@@ -11,20 +11,33 @@ import { IoMenu } from "react-icons/io5";
 
 
 
-function CategoryCards() {
+function CategoryCards({ setData: setFilterdata, filter }) {
     const { id } = useParams();
     const [data, setData] = useState([])
     const [limit, setLimit] = useState(12)
     const [obj, setObj] = useState([])
     const [page, setPage] = useState(1)
+    const [filterCrd, setFilterCrd] = useState([])
 
     useEffect(() => {
         getProductsBySubID(id, limit, page).then(mehsul => {
             setObj(mehsul)
             setData(mehsul.products)
+            setFilterCrd(mehsul.products)
+            setFilterdata(mehsul.products)
         }
         )
     }, [id, limit, page])
+
+    useEffect(() => {
+        const yeniArr = filterCrd.filter((item) => {
+            return item.price >= filter[0] && item.price <= filter[1]
+        })
+        setData(yeniArr)
+        console.log(yeniArr);
+
+
+    }, [filter])
     return (
         <div className='w-[76%] my-[40px]'>
             <div className='flex justify-between gap-[20px] items-center'>
@@ -70,6 +83,8 @@ function CategoryCards() {
             </div>
             <div className='flex items-center flex-wrap gap-[20px] justify-between'>
                 {
+
+
                     data.map(item => (
                         <Link to={`/filterle/${item.id}`}>
                             <CategoryCard {...item} />

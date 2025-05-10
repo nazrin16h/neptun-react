@@ -1,7 +1,20 @@
 import { FaChevronDown } from 'react-icons/fa'
 import PriceRange from './PriceRange'
+import { Slider } from 'antd'
+import { useEffect, useState } from 'react'
 
-function Filter() {
+function Filter({ data,setFilter }) {
+    const [minMax, setMinMax] = useState([0, 25])
+
+
+    useEffect(() => {
+        const sortByProd = data?.sort((a, b) => a.price - b.price)
+        const min = sortByProd[0]?.price
+        const max = sortByProd.at(-1)?.price
+
+        setMinMax([min, max])
+    }, [data])
+
     return (
         <div className="bg-[#F7F7F7] p-5 rounded-xl w-[25%] my-[40px] mx-[5px]">
             <h3 className="text-lg font-bold mb-4">Filtr</h3>
@@ -29,7 +42,18 @@ function Filter() {
                     Qiymət
                     <FaChevronDown className="text-sm" />
                 </div>
-                <PriceRange />
+                {/* <PriceRange /> */}
+                <Slider
+                    onChange={(elem) => {
+                        setFilter(elem)
+
+                    }}
+                    range={{ draggableTrack: true }}
+                    defaultValue={[minMax[0], minMax[1]]}
+                    step={0.01}
+                    min={minMax[0]}
+                    max={minMax[1]}
+                />
             </div>
             <div className="pt-2">
                 <button className="w-full py-2 rounded-full bg-[#FF8203] text-white font-bold text-[15px]">
