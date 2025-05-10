@@ -106,7 +106,9 @@ function HeaderNav() {
 
                             <div className="relative group mx-3">
                                 <button className="flex items-center text-[12px] text-white font-bold transition">
-                                    <span className="hidden sm:flex">Hesabım</span>
+                                    <span
+                                        onClick={handleLoginClick}
+                                        className="hidden sm:flex">Hesabım</span>
                                     <span className="flex sm:hidden"></span>
                                     <ChevronDown className="ml-1 h-4 w-4" />
                                 </button>
