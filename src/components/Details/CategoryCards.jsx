@@ -5,14 +5,12 @@ import CategoryCard from './CategoryCard'
 import { getProductsBySubID } from '../../services/api'
 import { Pagination } from 'antd'
 import { scrollYuxari } from '../../utils/scrollTop'
-import { Link, useParams } from 'react-router-dom';
-import { PiSquaresFourFill } from "react-icons/pi";
-import { IoMenu } from "react-icons/io5";
-
-
+import { Link, useParams } from 'react-router-dom'
+import { PiSquaresFourFill } from "react-icons/pi"
+import { IoMenu } from "react-icons/io5"
 
 function CategoryCards({ setData: setFilterdata, filter }) {
-    const { id } = useParams();
+    const { id } = useParams()
     const [data, setData] = useState([])
     const [limit, setLimit] = useState(12)
     const [obj, setObj] = useState([])
@@ -25,8 +23,7 @@ function CategoryCards({ setData: setFilterdata, filter }) {
             setData(mehsul.products)
             setFilterCrd(mehsul.products)
             setFilterdata(mehsul.products)
-        }
-        )
+        })
     }, [id, limit, page])
 
     useEffect(() => {
@@ -34,18 +31,16 @@ function CategoryCards({ setData: setFilterdata, filter }) {
             return item.price >= filter[0] && item.price <= filter[1]
         })
         setData(yeniArr)
-        console.log(yeniArr);
-
-
     }, [filter])
+
     return (
-        <div className='w-[76%] my-[40px]'>
-            <div className='flex justify-between gap-[20px] items-center'>
-                <div className='text-gray-500 text-[35px] flex gap-[10px] px-[20px]'>
+        <div className='w-full md:w-[90%] lg:w-[96%] w-[40%] gap-10 '>
+            <div className='flex flex-col md:flex-row justify-between gap-[20px] items-start md:items-center'>
+                <div className='text-gray-500 text-[28px] flex gap-[10px] px-2 md:px-[20px]'>
                     <span className='text-[#ff8300] hover:text-white'><PiSquaresFourFill /></span>
                     <span className='text-[#ff8300] hover:text-white'><IoMenu /></span>
                 </div>
-                <div className='flex items-start justify-between gap-[30px] py-[20px]'>
+                <div className='flex flex-row  sm:flex-row flex-wrap gap-4 md:gap-[30px] py-[20px]'>
                     <div>
                         <span className='text-[14px]'>Sırala: </span>
                         <select className='py-[7px] px-[10px] rounded-[20px] bg-white text-[12px]' name="" id="">
@@ -64,7 +59,7 @@ function CategoryCards({ setData: setFilterdata, filter }) {
                         <span className='text-[14px]'>Göstər: </span>
                         <select
                             onChange={(e) => { setLimit(e.target.value) }}
-                            className='py-[7px]  px-[10px] rounded-[20px] bg-white text-[12px]' name="" id="">
+                            className='py-[7px] px-[10px] rounded-[20px] bg-white text-[12px]' name="" id="">
                             <option className='font-extrabold' value="12">12</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -72,35 +67,33 @@ function CategoryCards({ setData: setFilterdata, filter }) {
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <button className='bg-[#FF8300] text-white rounded-[20px] py-[5px] px-[15px] flex gap-1 text-[14px]'>
+                    <button className='bg-[#FF8300] text-white rounded-[20px] py-[5px] px-[15px] flex items-center gap-1 text-[14px]'>
                         <span className="group">
                             <FontAwesomeIcon className="text-white transition-transform duration-300 group-hover:rotate-180" icon={faArrowsRotate} />
                         </span>
                         <span>Müqayisə et</span>
                     </button>
-
                 </div>
             </div>
-            <div className='flex items-center flex-wrap gap-[20px] justify-between'>
-                {
 
-
-                    data.map(item => (
-                        <Link to={`/filterle/${item.id}`}>
-                            <CategoryCard {...item} />
-                        </Link>
-                    ))
-                }
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[20px] mt-[20px] justify-items-center'>
+                {data.map(item => (
+                    <Link key={item.id} to={`/filterle/${item.id}`}>
+                        <CategoryCard {...item} />
+                    </Link>
+                ))}
             </div>
+
             <div className='my-[30px]'>
                 <Pagination
                     onChange={(cur) => {
-                        setPage(cur);
+                        setPage(cur)
                         scrollYuxari()
                     }}
                     total={obj?.totalProducts}
                     current={obj?.currentPage}
-                    defaultPageSize={limit} />
+                    defaultPageSize={limit}
+                />
             </div>
         </div>
     )

@@ -35,7 +35,7 @@ function ProductsDetail() {
             <div className='bg-[#f2f2f2]'>
                 <div className='container mx-auto px-4'>
                     <div className="flex flex-col lg:flex-row p-4 lg:p-6 gap-6">
-                        <div className="sm:w-full lg:w-1/4">
+                        <div className="sm:w-full lg:w-1/4 md:w-2/4 ">
                             <img src={data.img[0]} alt="" className="rounded-xl w-full object-cover max-h-[400px]" />
                             <div className="flex space-x-2 mt-4">
                                 <img src={data.img[0]} className="w-20 h-20 object-cover rounded" alt="photo" />
