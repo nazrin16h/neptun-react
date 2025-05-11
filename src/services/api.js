@@ -8,7 +8,7 @@ async function getSlider() {
 async function getAllCategory() {
     const res = await axiosInstance.get('/categories')
     return res.data
-    
+
 }
 
 async function getProdByPopular() {
@@ -43,10 +43,14 @@ async function getProdByCategory(id) {
     const res = await axiosInstance.get('/products/category/' + id)
     return res.data
 }
+async function login(item) {
+    const res = await axiosInstance.post('/auth/login/', item)
+    return res.data
+}
 
 export {
     getSlider, getAllCategory, getProductsBySubID,
     getProdByPopular, getProdByDiscounted,
     getAllProducts, getProdByCategory,
-    getProductsBySearch, getProductsById
+    getProductsBySearch, getProductsById,login
 }
